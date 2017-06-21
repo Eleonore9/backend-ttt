@@ -1,8 +1,8 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine, ForeignKey, delete
-from sqlalchemy import Column, Integer, String, DateTime, Boolean
+from sqlalchemy import create_engine, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime
 import datetime
-from sqlalchemy.orm import sessionmaker, relationship, backref, scoped_session
+from sqlalchemy.orm import sessionmaker, relationship, scoped_session
 
 engine = create_engine('sqlite:///backend-ttt.db', echo=True)
 session = scoped_session(sessionmaker(bind=engine,
