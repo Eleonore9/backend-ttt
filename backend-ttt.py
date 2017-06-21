@@ -1,11 +1,11 @@
 from flask import Flask
-import model
+import model-sqlite
 
 app = Flask(__name__)
 
 @app.route('/')
 def foo():
-    p = model.Player.get(1)
+    p = model-sqlite.Player.get(1)
     name = p.username
     return 'Player 1 is {}'.format(name)
 
