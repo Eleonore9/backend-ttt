@@ -20,17 +20,15 @@ class Player(db.Model):
 
     id = Column(Integer, primary_key = True)
     username = Column(String(20), nullable=False)
-    num_games_played = Column(Integer, nullable=False)
     ranking = Column(Integer, nullable=True)
 
     def __init__(self, username, num_games_played, ranking):
         self.username = username
-        self.num_games_played = num_games_played
         self.ranking = ranking
 
     @classmethod
-    def new(cls, username, num_games_played, ranking):
-        player = Player(username, num_games_played, None)
+    def new(cls, username, ranking):
+        player = Player(username, None)
         db.session.add(player)
         db.session.commit()
         return player
@@ -59,10 +57,6 @@ class Player(db.Model):
         player = Player.query.get(player_id)
         player.username = player_name
         db.session.commit()
-
-    def update_num_games(self, player_id):
-        return 'foo'
-        # TO BE FINISHED
 
     def calculate_ranking(self, player_id):
         return 'foo'
@@ -129,11 +123,11 @@ class Game(db.Model):
 def check_player(name):
     '''Add a new player if they don't exist already'''
     if name is None:
-        player = Player.new('unknown', 1, None)
+        player = Player.new('unknown', None)
     else:
         player = Player.get_by_username(name)
         if not player:
-            player = Player.new(name, 1, None)
+            player = Player.new(name, None)
     return player
 
 def get_player_name(id):
@@ -155,7 +149,7 @@ def main():
 
 
 if __name__ == "__main__":
-    # chantal = Player.new("chantal", 0, 1)
-    # victor = Player.new("victor", 0, 1)
+    # chantal = Player.new("chantal", None)
+    # victor = Player.new("victor", None)
     # Game.new(chantal.id, victor.id, None, None, None)
     manager.run()
