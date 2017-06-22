@@ -109,7 +109,18 @@ class Game(db.Model):
         # TO BE FINISHED
 
 
+def check_player(name):
+    '''Add a new player if they don't exist already'''
+    if name is None:
+        player = Player.new('unknown', 1, None)
+    else:
+        player = Player.get_by_username(name)
+        if not player:
+            player = Player.new(name, 1, None)
+    return player
+
 def get_player_name(id):
+    '''Get the name of a player from it's id'''
     player = Player.get_by_id(id)
     name = Player.get_username_from_id(player, id)
     return name
@@ -118,22 +129,15 @@ def get_player_name(id):
 def main():
     '''Create tables and seed them with fake players and games.'''
     db.create_all(bind=None)
-    eleonore = Player.get_by_username('éléonore')
-    gaspard = Player.get_by_username('gaspard')
-    ma = Player.get_by_username('marie-amélie')
-    if not eleonore:
-        eleonore = Player.new('éléonore', 2, None)
-    if not gaspard:
-        gaspard = Player.new('gaspard', 1, None)
-    if not ma:
-        ma = Player.new('marie-amélie', 2, None)
-    g1 = Game.new(eleonore.id, gaspard.id, None, None, None)
-    g2 = Game.new(eleonore.id, ma.id, None, None, None)
-    g3 = Game.new(gaspard.id, ma.id, None, None, None)
+    eleonore = check_player('éléonore')
+    gaspard = check_player('gaspard')
+    ma = check_player('marie-amélie')
+    Game.new(eleonore.id, gaspard.id, None, None, None)
+    Game.new(eleonore.id, ma.id, None, None, None)
+    Game.new(gaspard.id, ma.id, None, None, None)
 
 
 if __name__ == "__main__":
-    print('FOO')
     chantal = Player.new("chantal", 0, 1)
     victor = Player.new("victor", 0, 1)
     Game.new(chantal.id, victor.id, None, None, None)
