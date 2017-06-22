@@ -5,6 +5,7 @@ from model_pg import (app, Player, Game, main, get_player_name,
 @app.route('/')
 def homepage():
     '''Route used for demo purpose'''
+    main()
     all_players = Player.all()
     names = [p.username for p in all_players]
     all_games = Game.all()
@@ -46,4 +47,3 @@ def global_ranking(player_id):
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
-    main()
