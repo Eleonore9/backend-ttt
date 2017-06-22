@@ -48,20 +48,23 @@ class Player(db.Model):
         player = Player.query.get(player_id)
         return player.username
 
+    def update_player(self, player_id, player_name):
+        player = Player.query.get(player_id)
+        player.username = player_name
+        db.session.commit()
+
+    def update_num_games(self, player_id):
+        return 'foo'
+        # TO BE FINISHED
+
+    def calculate_ranking(self, player_id):
+        return 'foo'
+        # TO BE FINISHED
+
     def get_player_rank(self, player_id):
         player = Player.query.get(player_id)
         rank = player.ranking
         return rank
-
-    def update_num_games(self, player_id):
-        #num1 = Game.query.filter_by()
-        return 'foo'
-        # TO BE FINISHED
-
-    def update_ranking(self, player_id):
-        foo = 'foo'
-        return foo
-        # TO BE FINISHED
 
 
 class Game(db.Model):
@@ -103,6 +106,13 @@ class Game(db.Model):
         return games
 
     # Instance method
+    def update_game(self, game_id, winner_id):
+        now = datetime.datetime.now()
+        game = Game.query.get(game_id)
+        game.winner_id = winner_id
+        game.finished_at = now
+        db.session.commit()
+
     def get_player_score(self, player_id):
         foo = 'foo'
         return foo
