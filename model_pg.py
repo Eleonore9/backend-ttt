@@ -40,7 +40,7 @@ class Player(db.Model):
 
     @classmethod
     def get_by_username(cls, username):
-        players = Player.query.filter_by(username=username).all()
+        players = Player.query.filter_by(username=username).first()
         return players
 
     # Instance methods
@@ -109,15 +109,24 @@ class Game(db.Model):
         # TO BE FINISHED
 
 
+def get_player_name(id):
+    player = Player.get_by_id(id)
+    name = Player.get_username_from_id(player, id)
+    return name
+
+
 def main():
+    '''Create tables and seed them with fake players and games.'''
     db.create_all(bind=None)
-    if not Player.get_by_username('éléonore'):
+    eleonore = Player.get_by_username('éléonore')
+    gaspard = Player.get_by_username('gaspard')
+    ma = Player.get_by_username('marie-amélie')
+    if not eleonore:
         eleonore = Player.new('éléonore', 2, None)
-    if not Player.get_by_username('gaspard'):
+    if not gaspard:
         gaspard = Player.new('gaspard', 1, None)
-    if not Player.get_by_username('marie-amélie'):
+    if not ma:
         ma = Player.new('marie-amélie', 2, None)
-    print(eleonore.id)
     g1 = Game.new(eleonore.id, gaspard.id, None, None, None)
     g2 = Game.new(eleonore.id, ma.id, None, None, None)
     g3 = Game.new(gaspard.id, ma.id, None, None, None)
