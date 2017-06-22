@@ -22,7 +22,7 @@ class Player(db.Model):
     username = Column(String(20), nullable=False)
     ranking = Column(Integer, nullable=True)
 
-    def __init__(self, username, num_games_played, ranking):
+    def __init__(self, username, ranking):
         self.username = username
         self.ranking = ranking
 
