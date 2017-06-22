@@ -1,5 +1,5 @@
-from model_pg import (app, Player, Game, main, get_player_name,
-                      check_player)
+from __init__ import app
+from model_pg import Player, Game, main, get_player_name, check_player
 
 @app.route('/')
 def homepage():

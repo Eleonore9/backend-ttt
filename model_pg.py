@@ -1,19 +1,7 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
-import datetime, os
 from sqlalchemy.orm import relationship
-from flask_script import Manager
-from flask_migrate import Migrate, MigrateCommand
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-
-manager = Manager(app)
-manager.add_command('db', MigrateCommand)
+import datetime
+from __init__ import db
 
 class Player(db.Model):
     __tablename__ = "players"
@@ -149,7 +137,6 @@ def main():
 
 
 if __name__ == "__main__":
-    # chantal = Player.new("chantal", None)
-    # victor = Player.new("victor", None)
-    # Game.new(chantal.id, victor.id, None, None, None)
-    manager.run()
+    chantal = Player.new("chantal", None)
+    victor = Player.new("victor", None)
+    Game.new(chantal.id, victor.id, None, None, None)
