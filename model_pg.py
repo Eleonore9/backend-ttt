@@ -155,6 +155,7 @@ def main():
 
 
 if __name__ == "__main__":
-    chantal = Player.new("chantal", 0, 1)
-    victor = Player.new("victor", 0, 1)
-    Game.new(chantal.id, victor.id, None, None, None)
+    # chantal = Player.new("chantal", 0, 1)
+    # victor = Player.new("victor", 0, 1)
+    # Game.new(chantal.id, victor.id, None, None, None)
+    manager.run()
