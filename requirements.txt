@@ -3,6 +3,7 @@ Flask==0.12.2
 Flask-WTF==0.13.1
 sqlalchemy
 flask-sqlalchemy
+flask-migrate
 Jinja2==2.9.6
 MarkupSafe==1.0
 WTForms==2.1
