@@ -14,7 +14,13 @@ It is a Python/Flask web app with a Postgres database.
 
 * `model_pg.py` defines the Postgres database model using the ORM SqlAlchemy.
   * A `Player` is created with a username and a ranking. The ranking can be null.
+  ```
+  id | username  | ranking
+  ```
   * A `Game` is created with two players ids, a winner id (that can be null), a start time and a finish time (that can be null). There are two foreign keys that refer to player ids in the `Player` table.
+  ```
+   id | player1_id | player2_id | winner_id | started_at | finished_at
+  ```
 
 ### Install
 
