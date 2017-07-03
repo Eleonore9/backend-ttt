@@ -43,6 +43,7 @@ def global_ranking(player_id):
     '''Route redirected to at the end to show the players rank'''
     # For a player id calculate rank, update player row with 'ranking', return ranking
     # Will call 'Player.calculate_ranking' and 'Player.get_player_rank'
+    return "Sorry, this route hasn't been implemented (yet)!"
 
 # Helper for demo
 @app.route('/delete-records')

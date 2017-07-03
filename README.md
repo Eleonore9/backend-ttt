@@ -21,10 +21,37 @@ It is a Python/Flask web app with a Postgres database.
   ```
    id | player1_id | player2_id | winner_id | started_at | finished_at
   ```
+### Usage
+
+The app is deployed on Heroku. You can access it [here](https://backend-ttt.herokuapp.com).
+
+#### Demo
+To get an overview of how the app works there are two demo routes:
+
+1) [`backend-ttt.herokuapp.com`](https://backend-ttt.herokuapp.com) Seeds the database and displays info from the content of the players and games database tables.
+
+2) [`backend-ttt.herokuapp.com/delete-records`](https://backend-ttt.herokuapp.com/delete-records) Enables you to delete the players and games records from the database tables.
+
+#### Game
+When playing a game of TicTacToe, the aim is for the frontend app to use the backend app as an API and reach the following routes:
+
+1) [`backend-ttt.herokuapp.com/start-game`](https://backend-ttt.herokuapp.com/start-game) creates new rows in the players and games tables which generates their ids.
+
+Use the link above and you'll return something like:
+```
+New game started (game id: 7, id player1: 4, id player2: 5)
+```
+
+2) [`backend-ttt.herokuapp.com/finish-game/7/4/laure/auguste`](https://backend-ttt.herokuapp.com/finish-game/7/4/laure/auguste) updates the rows created before with the winner of the game and the players' names.
+
+Use the link above (note: make sure to update the players and game ids in the url) and you'll return something like:
+```
+Game (7) finished and won by auguste
+```
+
+3) [`backend-ttt.herokuapp.com/global-ranking/4`](https://backend-ttt.herokuapp.com/global-ranking/4) is not implemented yet, but aims at getting a player's rank amongst all players.
 
 ### Install
-
-The aim is for the app to be deployed on Heroku and accessible [here](https://backend-ttt.herokuapp.com). Unfortunately although the app is deployed it isn't functional.
 
 Installing the app locally requires to have postgres set up ([instructions](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup)).
 
