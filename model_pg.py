@@ -36,6 +36,13 @@ class Player(db.Model):
         players = Player.query.filter_by(username=username).first()
         return players
 
+    @classmethod
+    def delete_all(cls):
+        players = Player.all()
+        for player in players:
+            db.session.delete(player)
+            db.session.commit()
+
     # Instance methods
     def get_username_from_id(self, player_id):
         player = Player.query.get(player_id)
@@ -93,6 +100,13 @@ class Game(db.Model):
     def all(cls):
         games = Game.query.order_by(Game.id.desc()).all()
         return games
+
+    @classmethod
+    def delete_all(cls):
+        games = Game.all()
+        for game in games:
+            db.session.delete(game)
+            db.session.commit()
 
     # Instance method
     def update_game(self, game_id, winner_id):

@@ -44,5 +44,13 @@ def global_ranking(player_id):
     # For a player id calculate rank, update player row with 'ranking', return ranking
     # Will call 'Player.calculate_ranking' and 'Player.get_player_rank'
 
+# Helper for demo
+@app.route('/delete-records')
+def delete_records():
+    '''Deletes players and games records from the database'''
+    Game.delete_all()
+    Player.delete_all()
+    return 'All records deleted!'
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
