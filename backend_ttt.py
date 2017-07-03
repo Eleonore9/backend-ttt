@@ -13,7 +13,7 @@ def homepage():
                                            get_player_name(g.player2_id))
              for g in all_games]
     return ''' Players:<br>{players_list}<br>
-               <br>Scores:<br>{games_scores}'''.format(players_list="<br>".join(names),
+               <br>Games:<br>{games_scores}'''.format(players_list="<br>".join(names),
                                                        games_scores="<br>".join(games))
 
 @app.route('/start-game')
