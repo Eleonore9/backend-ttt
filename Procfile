@@ -1,1 +1,1 @@
-web: gunicorn backend-ttt:app --log-file=-
+web: gunicorn backend_ttt:app --log-file=-
