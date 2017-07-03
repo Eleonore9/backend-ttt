@@ -3,7 +3,6 @@ from model_pg import Player, Game, main, get_player_name, check_player
 
 @app.route('/')
 def homepage():
-    return 'Hello, world!'
     '''Route used for demo purpose'''
     main()
     all_players = Player.all()
